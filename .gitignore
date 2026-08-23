@@ -1,0 +1,27 @@
+# Build outputs
+build/
+data/
+visualisation/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Compiled objects / binaries
+*.o
+*.a
+*.so
+*.exe
+
+# Editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
