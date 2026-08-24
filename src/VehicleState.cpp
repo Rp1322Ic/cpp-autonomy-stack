@@ -17,12 +17,12 @@ double VehicleState::normalizeAngle(double angleRad){
 }
 
 
-void VehicleState::update(double steeringAngle, double acceleration, double dt){
-    speed += acceleration * dt;
+void VehicleState::update(ControlInput input, double dt){
+    speed += input.acceleration * dt;
     
     speed = std::max(0.0, speed);
 
-    heading += speed/wheelbase * std::tan(steeringAngle) * dt;
+    heading += speed/wheelbase * std::tan(input.steeringAngle) * dt;
 
     position.x += speed * std::cos(heading) * dt;
     position.y += speed * std::sin(heading) * dt;

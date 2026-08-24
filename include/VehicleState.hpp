@@ -1,5 +1,6 @@
 #pragma once
 #include "Vec2.hpp" // Utilizing your existing Vec2 class
+#include "ControlInput.hpp" 
 
 class VehicleState {
 private:
@@ -25,7 +26,7 @@ public:
     void setSpeed(double newSpeed) { speed = newSpeed; }
 
     // Methods
-    void update(double steeringAngle, double acceleration, double dt);
+    void update(ControlInput input, double dt);
 
     static double normalizeAngle(double angleRad);
     

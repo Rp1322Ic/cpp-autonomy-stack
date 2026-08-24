@@ -17,3 +17,18 @@ target_sources(autonomy_sim
 target_include_directories(autonomy_sim PRIVATE
     include
 )
+
+add_executable(unit_tests)
+
+target_sources(unit_tests
+  PRIVATE
+    tests/test_main.cpp
+    tests/test_vec2.cpp
+    tests/test_vehicle_state.cpp
+    src/Vec2.cpp
+    src/VehicleState.cpp
+)
+
+target_include_directories(unit_tests PRIVATE
+    include
+)

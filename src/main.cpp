@@ -5,14 +5,30 @@
 
 void runSimulationAndExport() {
     std::cout << "[SIMULATION] Running vehicle trajectory generator...\n";
-
-    // Setup: 2.5m wheelbase car starting at origin, facing North (pi / 2)
+    double T = 10.0;
+    double dt = 0.1;
+    double thetadot = 2*std::acos(-1.0)/T;
     double initialHeading = std::acos(-1.0) / 2.0;
-    VehicleState car({0.0, 0.0}, initialHeading, 0.0, 2.5);
+    double w = 2.5;
+    double steeringInput = 10.0*std::acos(-1.0)/180;     
+    double accelerationInput = 0.0;  
+    
+    double v = thetadot*w/std::tan(steeringInput);
 
-    double steeringInput = 0.0;     // Constant steering wheel angle (rad)
-    double accelerationInput = 1.0;  // Maintain constant speed
-    double dt = 0.1;                 // 100ms time-step
+    VehicleState car({0.0, 0.0}, initialHeading, v, w);
+    ControlInput ctrlInputs{steeringInput,accelerationInput};
+
+    int N = std::ceil(T/dt);
+
+    // // Setup: 2.5m wheelbase car starting at origin, facing North (pi / 2)
+    // double initialHeading = std::acos(-1.0) / 2.0;
+    // VehicleState car({0.0, 0.0}, initialHeading, 10.0, 2.5);
+
+    // double steeringInput = 10.0;     
+    // double accelerationInput = 0.0;  
+    // double dt = 0.1;
+
+    // ControlInput ctrlInputs{steeringInput,accelerationInput};
 
     std::ofstream csvFile("data/trajectory.csv");
     if (!csvFile.is_open()) {
@@ -22,8 +38,8 @@ void runSimulationAndExport() {
 
     csvFile << "time,x,y,heading,speed\n";
 
-    int T = 10;
-    int N = T/dt;
+    // int T = 10;
+    // int N = T/dt;
     for(int i = 0; i <= N; ++i) {
         double time = i * dt;
         csvFile << time << "," 
@@ -32,7 +48,7 @@ void runSimulationAndExport() {
                 << car.getHeading() << "," 
                 << car.getSpeed() << "\n";
         
-        car.update(steeringInput, accelerationInput, dt);
+        car.update(ctrlInputs, dt);
     }
 
     csvFile.close();
