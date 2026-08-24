@@ -1,7 +1,7 @@
 # Build outputs
 build/
-data/
-visualisation/
+data/*.csv
+visualisation/*.gif
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake

@@ -17,7 +17,7 @@ double VehicleState::normalizeAngle(double angleRad){
 }
 
 
-void VehicleState::update(ControlInput input, double dt){
+void VehicleState::update(const ControlInput& input, double dt){
     speed += input.acceleration * dt;
     
     speed = std::max(0.0, speed);

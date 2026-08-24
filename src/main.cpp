@@ -20,19 +20,9 @@ void runSimulationAndExport() {
 
     int N = std::ceil(T/dt);
 
-    // // Setup: 2.5m wheelbase car starting at origin, facing North (pi / 2)
-    // double initialHeading = std::acos(-1.0) / 2.0;
-    // VehicleState car({0.0, 0.0}, initialHeading, 10.0, 2.5);
-
-    // double steeringInput = 10.0;     
-    // double accelerationInput = 0.0;  
-    // double dt = 0.1;
-
-    // ControlInput ctrlInputs{steeringInput,accelerationInput};
-
     std::ofstream csvFile("data/trajectory.csv");
     if (!csvFile.is_open()) {
-        std::cerr << "Error: Could not create trajectory.csv\n";
+        std::cerr << "Error: Could not create data/trajectory.csv\n";
         return;
     }
 
@@ -52,12 +42,12 @@ void runSimulationAndExport() {
     }
 
     csvFile.close();
-    std::cout << "[SIMULATION] Successfully exported 250 states to trajectory.csv\n";
+    std::cout << "[SIMULATION] Successfully exported " << N + 1 << " states to data/trajectory.csv\n";
 }
 
 int main() {
     std::cout << "========================================\n";
-    std::cout << "Autonomous Vehicle Codebase - Step 3 (Full Circle)\n";
+    std::cout << "Autonomous Vehicle Codebase\n";
     std::cout << "========================================\n";
 
     runSimulationAndExport();

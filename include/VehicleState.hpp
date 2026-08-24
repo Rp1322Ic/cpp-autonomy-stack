@@ -26,7 +26,7 @@ public:
     void setSpeed(double newSpeed) { speed = newSpeed; }
 
     // Methods
-    void update(ControlInput input, double dt);
+    void update(const ControlInput& input, double dt);
 
     static double normalizeAngle(double angleRad);
     

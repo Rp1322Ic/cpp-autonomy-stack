@@ -1,13 +1,10 @@
 #include "Vec2.hpp"
+#include "testUtils.hpp"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-
-bool approxEqual(double a, double b, double tolerance = 1e-6) {
-    return std::abs(a - b) < tolerance;
-}
 
 void testDefaultConstructor() {
     Vec2 v;

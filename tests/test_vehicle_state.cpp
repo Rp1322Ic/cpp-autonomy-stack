@@ -1,10 +1,9 @@
 #include "VehicleState.hpp"
+#include "testUtils.hpp"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
-
-bool approxEqual(double a, double b, double tolerance = 1e-6);
 
 void testDefaultConstructorVehicleState() {
     double wheelbaseIn = 2.5;
@@ -48,10 +47,10 @@ void testAcceleration(){
     for(int i = 0; i < N; ++i) {
         car.update(ctrlInputs, dt);
     }
-    assert(approxEqual(car.getPosition().x, 0.0));
-    assert(approxEqual(car.getPosition().y, 50.5));
-    assert(approxEqual(car.getHeading(), initialHeading));
-    assert(approxEqual(car.getSpeed(), accelerationInput*T));
+    assert(approxEqual(car.getPosition().x, 0.0), 1e-3);
+    assert(approxEqual(car.getPosition().y, 50.5), 1e-3);
+    assert(approxEqual(car.getHeading(), initialHeading), 1e-3);
+    assert(approxEqual(car.getSpeed(), accelerationInput*T), 1e-3);
 }
 
 void testCircularMotion(){
